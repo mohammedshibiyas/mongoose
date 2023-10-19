@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="task" onchange="addTask()" placeholder="enter anything">
+
+    <script>
+        let data=document.getElementById("task");
+        function addTask(){
+            let task=data.value
+            console.log(data);
+
+            fetch("http://localhost:3002/api/addtask",{
+                method:"POST",
+                headers:{"content-type":"application/json"},
+                body:JSON.stringify({task})
+            }).then(()=>{
+                alert("task added");
+
+            }).catch("error");
+
+            task.value=""
+        }
+    </script>
+</body>
+</html>
